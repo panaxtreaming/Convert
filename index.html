@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PanaxStreaming · Conversor BCV y Datos de Pago</title>
+    <title>PanaxStreaming · Pago de Servicios</title>
+    
+    <!-- Open Graph / Redes Sociales - para compartir -->
+    <meta property="og:title" content="Sistema de Proceso de Pago de Servicios PANAXTREAMING" />
+    <meta property="og:description" content="Sistema de proceso de pago de servicios PANAXTREAMING - Conversor con tasa BCV oficial y datos bancarios." />
+    <meta property="og:image" content="https://i.pinimg.com/736x/68/6b/dd/686bdd96f0a2aae6825d9dcaa1b71192.jpg" />
+    <meta property="og:image:width" content="736" />
+    <meta property="og:image:height" content="736" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
     <style>
+        /* ===== ESTILOS GLOBALES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -33,6 +44,7 @@
             border: 1px solid rgba(255,255,255,0.5);
         }
 
+        /* ===== HEADER CON IMAGEN Y FONDO NEGRO ===== */
         .header {
             background: #000000;
             color: white;
@@ -75,70 +87,147 @@
             color: #dddddd;
         }
 
+        /* ===== TASA BCV - ESTILO MUY VISIBLE ===== */
         .tasa-box {
-            background: #fef7e0;
+            background: linear-gradient(135deg, #1f5e3a, #2a7a4a);
             margin: 1.2rem 1.8rem 0 1.8rem;
-            padding: 0.8rem 1rem;
-            border-radius: 1.8rem;
+            padding: 1rem 1rem;
+            border-radius: 2rem;
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02);
+            gap: 0.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+            border: 1px solid #ffd966;
         }
 
         .tasa-label {
-            font-weight: 600;
-            color: #2c3e2f;
-            background: #e9f0e5;
-            padding: 0.2rem 0.9rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: #00000066;
+            padding: 0.3rem 1rem;
             border-radius: 40px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(2px);
         }
 
         .tasa-valor {
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: #1f5e3a;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #FFE484;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
+            background: #00000044;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            display: inline-block;
         }
 
         .tasa-fecha {
             font-size: 0.75rem;
-            color: #4a5b5e;
-            background: #fff3cf;
-            padding: 0.2rem 0.8rem;
+            color: #ffffff;
+            background: #00000066;
+            padding: 0.3rem 0.8rem;
             border-radius: 50px;
-        }
-
-        .refresh-btn {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            background: #ffffffcc;
-            border-radius: 40px;
-            padding: 0.2rem 0.7rem;
-            transition: 0.2s;
             font-weight: 500;
         }
 
+        .refresh-btn {
+            background: #ffd966;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 40px;
+            padding: 0.3rem 0.8rem;
+            transition: 0.2s;
+            font-weight: bold;
+            color: #1f5e3a;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
         .refresh-btn:hover {
-            background: white;
+            background: #ffc107;
             transform: scale(0.96);
         }
 
+        /* ===== ÁREA DE INFORMACIÓN Y RESPALDO ===== */
         .update-info {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-align: center;
-            margin: 0.5rem 1.8rem 0;
-            color: #6c7a5e;
-            background: #f2f4e6;
-            padding: 0.2rem;
-            border-radius: 1rem;
+            margin: 0.8rem 1.8rem 0;
+            color: #2c3e2f;
+            background: #fef7e0;
+            padding: 0.4rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
+        .countdown {
+            background: #1f5e3a;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        .manual-rate-area {
+            background: #f0e6d2;
+            margin: 0.5rem 1.8rem 0;
+            padding: 0.6rem 1rem;
+            border-radius: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+        .manual-rate-input {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: white;
+            border-radius: 2rem;
+            padding: 0.2rem 0.5rem;
+        }
+        .manual-rate-input input {
+            width: 90px;
+            padding: 0.4rem;
+            font-size: 0.9rem;
+            border: none;
+            outline: none;
+        }
+        .btn-small {
+            background: #2c7a4b;
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-small:hover { background: #1f5e3a; }
+        .link-tasa {
+            color: #1f5e3a;
+            text-decoration: none;
+            font-weight: bold;
+            background: #ffffffcc;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ===== CONTENIDO PRINCIPAL ===== */
         .contenido {
             padding: 1.8rem 1.8rem 1.6rem;
         }
@@ -383,68 +472,74 @@
         }
 
         @media (max-width: 520px) {
-            .contenido {
-                padding: 1.2rem;
-            }
-            .monto-bs {
-                font-size: 1.3rem;
-            }
-            .tasa-valor {
-                font-size: 1.3rem;
-            }
-            .header h1 {
-                font-size: 1rem;
-            }
-            .header-img {
-                width: 60%;
-                max-width: 150px;
-            }
+            .contenido { padding: 1.2rem; }
+            .monto-bs { font-size: 1.3rem; }
+            .tasa-valor { font-size: 1.8rem; }
+            .header h1 { font-size: 1rem; }
+            .header-img { width: 60%; max-width: 150px; }
+            .manual-rate-area { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
 <body>
 <div class="app-card">
+    <!-- ==================== CABECERA ==================== -->
     <div class="header">
         <img class="header-img" src="https://i.pinimg.com/736x/c0/3e/ed/c03eeddad09b91f76dd63ae373d0d27e.jpg" alt="PanaxStreaming TV Go">
         <div class="header-text">
             <h1>📺 DATOS PARA CONCRETAR SU COMPRA DE SERVICIOS EN PANAXTREAMING TV GO</h1>
-            <div class="header-sub">💰 Conversor con tasa BCV oficial · Copia y paga fácil</div>
+            <div class="header-sub">💰 Sistema de proceso de pago · Tasa BCV actualizada automáticamente</div>
         </div>
     </div>
 
+    <!-- ==================== TASA BCV DESTACADA ==================== -->
     <div class="tasa-box" id="tasaContainer">
-        <div class="tasa-label">💵 TASA BCV (Referencia)</div>
+        <div class="tasa-label">💵 TASA OFICIAL BCV</div>
         <div class="tasa-valor" id="tasaValue">--- Bs/USD</div>
         <div class="tasa-fecha" id="tasaFecha">cargando...</div>
-        <button class="refresh-btn" id="refreshRateBtn" title="Actualizar tasa BCV">🔄</button>
+        <button class="refresh-btn" id="refreshRateBtn" title="Actualizar tasa BCV ahora">🔄</button>
     </div>
+    
     <div class="update-info" id="updateInfo">
-        🔄 Actualización automática diaria desde el BCV
+        <span>🔄 Fuente: API especializada BCV</span>
+        <span class="countdown" id="countdownTimer">-- : -- : --</span>
     </div>
 
+    <!-- ==================== RESPALDO MANUAL ==================== -->
+    <div class="manual-rate-area">
+        <span>⚠️ ¿No se actualiza la tasa?</span>
+        <a href="https://www.bcv.org.ve/seccionportal/tipo-de-cambio-oficial-del-bcv" target="_blank" class="link-tasa">🔍 Ver tasa BCV aquí</a>
+        <div class="manual-rate-input">
+            <span>📌 Ingresar tasa manual:</span>
+            <input type="number" id="manualRateInput" step="0.01" placeholder="Ej: 56.32">
+            <button id="applyManualRateBtn" class="btn-small">Aplicar</button>
+        </div>
+    </div>
+
+    <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
     <div class="contenido">
-        <!-- Lista desplegable de planes -->
+        <!-- LISTA DESPLEGABLE DE PLANES CORREGIDA SEGÚN SOLICITUD -->
         <div class="campo-group">
             <label>📺 Seleccione su plan / suscripción</label>
             <div class="plan-selector">
                 <span class="plan-icon">🎁</span>
                 <select id="planSelector">
-                    <option value="3.00">1 MES PANTALLA VIP (+$3.00)</option>
-                    <option value="6.00">1 MES DOS PANTALLAS (+$6.00)</option>
-                    <option value="6.00">2 MESES PANTALLA VIP (+$6.00)</option>
-                    <option value="9.00">3 MESES PANTALLA VIP (+$9.00)</option>
-                    <option value="15.00">6 MESES (+$15.00)</option>
-                    <option value="29.00">12 MESES (+$29.00)</option>
-                    <option value="4.00">1 MES FLUJO TV PANTALLA (+$4.00)</option>
-                    <option value="8.50">1 MES FLUJO CUENTA COMPLETA 3 DISPOSITIVOS (+$8.50)</option>
-                    <option value="5.50">COMBO PANTALLAS PANAXTREAMING + FLUJO TV (+$5.50)</option>
-                    <option value="5.00">1 MES STELLA TV PANTALLA (+$5.00)</option>
+                    <option value="3.00">1 MES PANTALLA VIP PANAXTREAMING (+$3.00)</option>
+                    <option value="6.00">1 MES DOS PANTALLAS PANAXTREAMING (+$6.00)</option>
+                    <option value="6.00">2 MESES PANTALLA VIP PANAXTREAMING (+$6.00)</option>
+                    <option value="9.00">3 MESES PANTALLA VIP PANAXTREAMING (+$9.00)</option>
+                    <option value="15.00">6 MESES PANAXTREAMING (+$15.00)</option>
+                    <option value="29.00">12 MESES PANAXTREAMING (+$29.00)</option>
+                    <option value="4.00">1 MES F1UJO TV PANTALLA (+$4.00)</option>
+                    <option value="8.50">1 MES F1UJO CUENTA COMPLETA 3 DISPOSITIVOS (+$8.50)</option>
+                    <option value="5.50">COMBO PANTALLAS PANAXTREAMIN + FLUJO TV (+$5.50)</option>
+                    <option value="5.00">1 MES ST3LLA TV PANTALLA (+$5.00)</option>
                     <option value="12.00">1 MES STELLA CUENTA COMPLETA 3 DISPOSITIVOS (+$12.00)</option>
                 </select>
             </div>
         </div>
 
-        <!-- Campo monto en DÓLARES (se actualiza automáticamente al elegir plan) -->
+        <!-- Campo monto en DÓLARES -->
         <div class="campo-group">
             <label>💲 Monto en DÓLARES (USD) a pagar</label>
             <div class="input-dolar">
@@ -453,7 +548,7 @@
             </div>
         </div>
 
-        <!-- Resultado en Bolívares + botón copiar -->
+        <!-- Resultado en Bolívares -->
         <div class="campo-group">
             <label>🇻🇪 Monto en BOLÍVARES (tasa BCV)</label>
             <div class="resultado-bs">
@@ -465,7 +560,7 @@
             </div>
         </div>
 
-        <!-- NUEVOS CAMPOS DE DATOS PERSONALES -->
+        <!-- Datos personales -->
         <div class="campo-group">
             <label>👤 Nombre y Apellido:</label>
             <div class="input-field">
@@ -498,12 +593,11 @@
             </div>
         </div>
 
-        <!-- Renglón especial "tado para hacer pago" -->
         <div class="listo-pago">
             ✅ LISTO PARA HACER PAGO · DATOS VERIFICADOS
         </div>
 
-        <!-- Selector de banco y datos dinámicos (mismos datos para ambos) -->
+        <!-- Selector de banco -->
         <div class="campo-group">
             <label>🏦 Seleccione el banco para transferencia</label>
             <div class="selector-banco">
@@ -515,30 +609,26 @@
             </div>
         </div>
 
-        <!-- Datos bancarios dinámicos (idénticos para ambos) -->
+        <!-- Datos bancarios -->
         <div class="banco-section" id="bancoSection">
-            <div class="banco-titulo" id="bancoTitulo">
-                🏦 BANCO MERCANTIL
-            </div>
-            <div class="dato-row" id="telefonoRow">
+            <div class="banco-titulo" id="bancoTitulo">🏦 BANCO MERCANTIL</div>
+            <div class="dato-row">
                 <span class="dato-label">📞 Teléfono / contacto:</span>
                 <span class="dato-valor" id="telefonoValue">04120754787</span>
                 <button class="copy-mini" id="copyTelefonoBtn">Copiar</button>
             </div>
-            <div class="dato-row" id="cedulaRow">
+            <div class="dato-row">
                 <span class="dato-label">🆔 Cédula / RIF:</span>
                 <span class="dato-valor" id="cedulaValue">13967475</span>
                 <button class="copy-mini" id="copyCedulaBtn">Copiar</button>
             </div>
-            <div class="copy-hint" style="justify-content: flex-end; margin-top: 0.2rem;">
-                🔁 Presiona copiar y pega en tu banco
-            </div>
+            <div class="copy-hint" style="justify-content: flex-end;">🔁 Presiona copiar y pega en tu banco</div>
         </div>
 
-        <!-- Botón ENVIAR COMPROBANTE AL WHATSAPP con datos personales -->
+        <!-- Botón WhatsApp -->
         <button class="whatsapp-btn" id="whatsappBtn">
             💬 ENVIAR COMPROBANTE DE PAGO AL WHATSAPP
-            <span style="font-size:1rem;">📎</span>
+            <span>📎</span>
         </button>
         <div class="copy-hint" style="justify-content: center; margin-top: 0.6rem;">
             +58 412-0754787 · comprobante listo
@@ -546,13 +636,15 @@
         <div id="errorMessage" style="min-height: 40px;"></div>
     </div>
     <footer>
-        Tasa BCV actualizada automáticamente cada 24 horas desde la fuente oficial · Servicio PanaxStreaming TV Go
+        Tasa BCV actualizada automáticamente cada 24 horas desde API confiable.<br>
+        Si la tasa no se actualiza, use el enlace oficial o ingrese el valor manualmente.
     </footer>
 </div>
 
 <script>
-    // ---------------------- CONFIGURACIÓN ----------------------
-    const API_URL = 'https://ve.bes.wtf/api';
+    // ==================== CONFIGURACIÓN DE LA TASA BCV ====================
+    // Usamos una API confiable que extrae la tasa directamente del BCV
+    const BCV_API_URL = 'https://ve.bes.wtf/api';
     
     // Elementos DOM
     const tasaValueSpan = document.getElementById('tasaValue');
@@ -570,65 +662,47 @@
     const cedulaValueSpan = document.getElementById('cedulaValue');
     const copyTelefonoBtn = document.getElementById('copyTelefonoBtn');
     const copyCedulaBtn = document.getElementById('copyCedulaBtn');
-    const updateInfoSpan = document.getElementById('updateInfo');
+    const countdownSpan = document.getElementById('countdownTimer');
     const planSelector = document.getElementById('planSelector');
-
-    // Nuevos campos de datos personales
     const nombreApellidoInput = document.getElementById('nombreApellido');
     const telefonoContactoInput = document.getElementById('telefonoContacto');
     const emailContactoInput = document.getElementById('emailContacto');
     const cedulaContactoInput = document.getElementById('cedulaContacto');
+    const manualRateInput = document.getElementById('manualRateInput');
+    const applyManualRateBtn = document.getElementById('applyManualRateBtn');
 
-    // Datos de los bancos: AMBOS CON LOS MISMOS DATOS
+    // Datos bancarios
     const bancosData = {
-        mercantil: {
-            nombre: 'BANCO MERCANTIL',
-            telefono: '04120754787',
-            cedula: '13967475'
-        },
-        venezuela: {
-            nombre: 'BANCO DE VENEZUELA',
-            telefono: '04120754787',
-            cedula: '13967475'
-        }
+        mercantil: { nombre: 'BANCO MERCANTIL', telefono: '04120754787', cedula: '13967475' },
+        venezuela: { nombre: 'BANCO DE VENEZUELA', telefono: '04120754787', cedula: '13967475' }
     };
 
     let currentRate = null;
-    let lastUpdateStr = '--';
     let currentBanco = 'mercantil';
     let updateInterval = null;
+    let countdownInterval = null;
+    let nextUpdateTime = null;
 
-    // Funciones auxiliares
+    // ==================== FUNCIONES AUXILIARES ====================
     function showError(msg, isWarning = true) {
         errorDiv.innerHTML = `<div class="error-msg">⚠️ ${msg}</div>`;
-        setTimeout(() => {
-            if (errorDiv.innerHTML.includes(msg)) errorDiv.innerHTML = '';
-        }, isWarning ? 4000 : 5000);
+        setTimeout(() => { if (errorDiv.innerHTML.includes(msg)) errorDiv.innerHTML = ''; }, 4000);
     }
 
     function formatVES(amount) {
         if (isNaN(amount)) return '0,00 Bs';
-        return new Intl.NumberFormat('es-VE', { 
-            minimumFractionDigits: 2, 
-            maximumFractionDigits: 2,
-            style: 'decimal'
-        }).format(amount) + ' Bs';
+        return new Intl.NumberFormat('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount) + ' Bs';
     }
 
     function updateConversion() {
-        if (currentRate === null) {
-            montoBsResultSpan.innerText = '--- Bs';
-            return;
-        }
+        if (currentRate === null) { montoBsResultSpan.innerText = '--- Bs'; return; }
         let usdValue = parseFloat(montoUsdInput.value);
         if (isNaN(usdValue) || usdValue < 0) usdValue = 0;
-        const bolivares = usdValue * currentRate;
-        montoBsResultSpan.innerText = formatVES(bolivares);
+        montoBsResultSpan.innerText = formatVES(usdValue * currentRate);
     }
 
     function updateBancoUI() {
         const banco = bancosData[currentBanco];
-        if (!banco) return;
         bancoTitulo.innerHTML = `🏦 ${banco.nombre}`;
         telefonoValueSpan.innerText = banco.telefono;
         cedulaValueSpan.innerText = banco.cedula;
@@ -636,239 +710,181 @@
         copyCedulaBtn.setAttribute('data-copy', banco.cedula);
     }
 
-    async function copyToClipboard(text, successMsg = '¡Copiado!', isMonto = false) {
+    async function copyToClipboard(text, successMsg, isMonto = false) {
         try {
             await navigator.clipboard.writeText(text);
             if (isMonto) {
                 copyHintMsgSpan.innerText = '✅ Monto copiado · pegue en su banco';
-                setTimeout(() => {
-                    copyHintMsgSpan.innerText = 'copie y pegue en su banco';
-                }, 2000);
+                setTimeout(() => { copyHintMsgSpan.innerText = 'copie y pegue en su banco'; }, 2000);
             } else {
-                const tempMsg = document.createElement('span');
-                tempMsg.innerText = '📋 ' + successMsg;
-                tempMsg.style.position = 'fixed';
-                tempMsg.style.bottom = '20px';
-                tempMsg.style.left = '50%';
-                tempMsg.style.transform = 'translateX(-50%)';
-                tempMsg.style.backgroundColor = '#1f5e3a';
-                tempMsg.style.color = 'white';
-                tempMsg.style.padding = '0.5rem 1rem';
-                tempMsg.style.borderRadius = '40px';
-                tempMsg.style.fontSize = '0.85rem';
-                tempMsg.style.zIndex = '999';
-                tempMsg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                document.body.appendChild(tempMsg);
-                setTimeout(() => tempMsg.remove(), 1500);
+                const toast = document.createElement('div');
+                toast.innerText = `📋 ${successMsg}`;
+                toast.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#1f5e3a; color:white; padding:0.5rem 1rem; border-radius:40px; font-size:0.85rem; z-index:999; box-shadow:0 2px 10px rgba(0,0,0,0.2);';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 1500);
             }
-        } catch (err) {
-            showError('No se pudo copiar, selecciona manualmente', true);
-        }
+        } catch (err) { showError('No se pudo copiar', true); }
     }
 
     async function handleCopyBs() {
-        if (currentRate === null) {
-            showError('Esperando tasa actualizada...', true);
-            return;
-        }
-        let usd = parseFloat(montoUsdInput.value);
-        if (isNaN(usd)) usd = 0;
-        const montoBs = usd * currentRate;
-        const numeroLimpio = montoBs.toFixed(2);
-        await copyToClipboard(numeroLimpio, 'bs', true);
+        if (!currentRate) { showError('Esperando tasa...', true); return; }
+        let usd = parseFloat(montoUsdInput.value) || 0;
+        await copyToClipboard((usd * currentRate).toFixed(2), 'bs', true);
     }
 
-    function updateNextUpdateMessage() {
-        if (updateInterval) {
-            const nextUpdate = new Date(Date.now() + 24 * 60 * 60 * 1000);
-            const horaStr = nextUpdate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-            updateInfoSpan.innerHTML = `🔄 Actualización automática diaria · próxima a las ${horaStr}`;
-        } else {
-            updateInfoSpan.innerHTML = `🔄 Actualización automática diaria desde el BCV`;
-        }
+    // ==================== CONTADOR DE ACTUALIZACIÓN ====================
+    function startCountdown() {
+        if (countdownInterval) clearInterval(countdownInterval);
+        countdownInterval = setInterval(() => {
+            if (!nextUpdateTime) return;
+            const diff = nextUpdateTime - Date.now();
+            if (diff <= 0) {
+                countdownSpan.innerText = "00:00:00";
+                if (countdownInterval) clearInterval(countdownInterval);
+                return;
+            }
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (3600000)) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            countdownSpan.innerText = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        }, 1000);
     }
 
-    async function fetchBCVRate(showLoading = true) {
-        if (showLoading) {
-            tasaValueSpan.innerText = '🔄 cargando...';
-        }
+    // ==================== OBTENER TASA DESDE LA API ====================
+    async function fetchBCVRateFromAPI(showLoading = true) {
+        if (showLoading) tasaValueSpan.innerText = '🔄 obteniendo tasa...';
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000);
-            const response = await fetch(API_URL, { 
-                signal: controller.signal,
-                headers: { 'Accept': 'application/json', 'Cache-Control': 'no-cache' }
-            });
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
+            const response = await fetch(BCV_API_URL, { signal: controller.signal, headers: { 'Cache-Control': 'no-cache' } });
             clearTimeout(timeoutId);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             
-            if (data && data.bcv && data.bcv.usd && typeof data.bcv.usd.price === 'number') {
+            // La API ve.bes.wtf tiene estructura: data.bcv.usd.price
+            if (data && data.bcv && data.bcv.usd && typeof data.bcv.usd.price === 'number' && data.bcv.usd.price > 0) {
                 const newRate = data.bcv.usd.price;
-                if (newRate > 0) {
-                    if (currentRate !== newRate) {
-                        currentRate = newRate;
-                        const tempNotif = document.createElement('div');
-                        tempNotif.innerText = `✅ Tasa BCV actualizada: ${currentRate.toFixed(2)} Bs/USD`;
-                        tempNotif.style.position = 'fixed';
-                        tempNotif.style.bottom = '70px';
-                        tempNotif.style.left = '50%';
-                        tempNotif.style.transform = 'translateX(-50%)';
-                        tempNotif.style.backgroundColor = '#2c7a4b';
-                        tempNotif.style.color = 'white';
-                        tempNotif.style.padding = '0.5rem 1rem';
-                        tempNotif.style.borderRadius = '2rem';
-                        tempNotif.style.fontSize = '0.8rem';
-                        tempNotif.style.zIndex = '999';
-                        tempNotif.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-                        document.body.appendChild(tempNotif);
-                        setTimeout(() => tempNotif.remove(), 2500);
-                    }
-                    let fechaRaw = data.bcv.usd.last_update || data.bcv.last_update || null;
-                    if (fechaRaw) {
-                        try {
-                            const fechaDate = new Date(fechaRaw);
-                            if (!isNaN(fechaDate.getTime())) {
-                                lastUpdateStr = fechaDate.toLocaleString('es-ES', { 
-                                    day: '2-digit', month: '2-digit', year: 'numeric',
-                                    hour: '2-digit', minute: '2-digit'
-                                });
-                            } else {
-                                lastUpdateStr = fechaRaw.substring(0, 10);
-                            }
-                        } catch(e) { lastUpdateStr = 'actualizado hoy'; }
-                    } else {
-                        lastUpdateStr = new Date().toLocaleDateString('es-ES');
-                    }
-                    tasaValueSpan.innerText = `${currentRate.toFixed(2)} Bs/USD`;
-                    tasaFechaSpan.innerText = `📅 ${lastUpdateStr}`;
-                    updateConversion();
-                    return true;
+                const oldRate = currentRate;
+                currentRate = newRate;
+                
+                // Actualizar fecha
+                let fechaRaw = data.bcv.usd.last_update || data.bcv.last_update || null;
+                if (fechaRaw) {
+                    try {
+                        const fechaDate = new Date(fechaRaw);
+                        if (!isNaN(fechaDate.getTime())) {
+                            tasaFechaSpan.innerText = `📅 ${fechaDate.toLocaleString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' })}`;
+                        } else { tasaFechaSpan.innerText = `📅 ${fechaRaw.substring(0,10)}`; }
+                    } catch(e) { tasaFechaSpan.innerText = '📅 actualizado hoy'; }
                 } else {
-                    throw new Error('Tasa inválida');
+                    tasaFechaSpan.innerText = `📅 ${new Date().toLocaleDateString('es-ES')}`;
                 }
+                tasaValueSpan.innerText = `${currentRate.toFixed(2)} Bs/USD`;
+                updateConversion();
+                
+                // Notificar cambio si es diferente
+                if (oldRate !== null && oldRate !== currentRate) {
+                    const notif = document.createElement('div');
+                    notif.innerText = `✅ TASA BCV ACTUALIZADA: ${currentRate.toFixed(2)} Bs/USD`;
+                    notif.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#2c7a4b; color:white; padding:0.7rem 1.2rem; border-radius:3rem; font-weight:bold; z-index:1000; box-shadow:0 4px 12px black;';
+                    document.body.appendChild(notif);
+                    setTimeout(() => notif.remove(), 4000);
+                }
+                return true;
             } else {
-                throw new Error('Respuesta sin datos BCV');
+                throw new Error('Respuesta inválida de la API');
             }
         } catch (err) {
-            console.error('Error fetch tasa BCV:', err);
-            let errorText = 'No se pudo obtener tasa BCV. ';
-            if (err.name === 'AbortError') errorText += 'Tiempo de espera agotado.';
-            else errorText += 'Verifica tu conexión.';
-            showError(errorText + ' Se reintentará en 1 hora.', true);
-            if (currentRate === null) {
+            console.error('Error obteniendo tasa BCV:', err);
+            showError('No se pudo obtener la tasa automática. Use el enlace oficial o ingrese la tasa manualmente.', true);
+            if (!currentRate) {
                 tasaValueSpan.innerText = '⚠️ Error tasa';
-                tasaFechaSpan.innerText = 'intenta más tarde';
+                tasaFechaSpan.innerText = 'use modo manual';
                 montoBsResultSpan.innerText = '--- Bs';
             }
-            setTimeout(() => {
-                if (currentRate === null) fetchBCVRate(true);
-            }, 60 * 60 * 1000);
+            // Reintento en 1 hora
+            setTimeout(() => { if (!currentRate) fetchBCVRateFromAPI(true); }, 60 * 60 * 1000);
             return false;
         }
     }
 
-    // Enviar comprobante por WhatsApp incluyendo datos personales
+    // ==================== APLICAR TASA MANUAL ====================
+    function applyManualRate() {
+        let val = parseFloat(manualRateInput.value);
+        if (isNaN(val) || val <= 0) {
+            showError('Ingrese una tasa válida (número positivo)', true);
+            return;
+        }
+        currentRate = val;
+        tasaValueSpan.innerText = `${currentRate.toFixed(2)} Bs/USD (manual)`;
+        tasaFechaSpan.innerText = `📅 ${new Date().toLocaleString('es-ES', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' })} (manual)`;
+        updateConversion();
+        showError('Tasa actualizada manualmente', false);
+    }
+
+    // ==================== PROGRAMAR ACTUALIZACIÓN DIARIA ====================
+    function scheduleDailyUpdate() {
+        if (updateInterval) clearInterval(updateInterval);
+        updateInterval = setInterval(async () => {
+            await fetchBCVRateFromAPI(true);
+            nextUpdateTime = Date.now() + 24 * 60 * 60 * 1000;
+            startCountdown();
+        }, 24 * 60 * 60 * 1000);
+        nextUpdateTime = Date.now() + 24 * 60 * 60 * 1000;
+        startCountdown();
+    }
+
+    // ==================== ENVIAR WHATSAPP ====================
     function setupWhatsApp() {
         whatsappBtn.addEventListener('click', () => {
-            // Validar campos requeridos (opcional, pero sugerimos)
             const nombre = nombreApellidoInput.value.trim();
             const telefono = telefonoContactoInput.value.trim();
             const email = emailContactoInput.value.trim();
             const cedulaPersonal = cedulaContactoInput.value.trim();
-            
             if (!nombre || !telefono || !email || !cedulaPersonal) {
-                showError('Por favor complete todos sus datos personales (Nombre, Teléfono, Correo, Cédula) antes de enviar.', true);
+                showError('Complete todos sus datos personales (Nombre, Teléfono, Correo, Cédula) antes de enviar.', true);
                 return;
             }
-
-            const phoneNumber = '584120754787';
-            let montoUsd = parseFloat(montoUsdInput.value);
-            if (isNaN(montoUsd)) montoUsd = 0;
-            let montoBsTexto = '';
-            if (currentRate !== null) {
-                const bsCalc = montoUsd * currentRate;
-                montoBsTexto = ` por un monto de ${bsCalc.toFixed(2)} Bs (${montoUsd} USD según tasa BCV ${currentRate.toFixed(2)})`;
-            } else {
-                montoBsTexto = ` (monto pendiente de tasa)`;
-            }
-            const bancoActual = bancosData[currentBanco];
-            const bancoNombre = bancoActual ? bancoActual.nombre : 'Banco Mercantil';
-            const telefonoBanco = bancoActual ? bancoActual.telefono : '04120754787';
-            const cedulaBanco = bancoActual ? bancoActual.cedula : '13967475';
-            
-            // Construir mensaje completo con datos personales y de pago
-            const message = `📺 *COMPROBANTE DE PAGO - PANAXSTREAMING TV GO*%0A%0A` +
-                `👤 *Nombre y Apellido:* ${encodeURIComponent(nombre)}%0A` +
-                `📞 *Teléfono de contacto:* ${encodeURIComponent(telefono)}%0A` +
-                `📧 *Correo electrónico:* ${encodeURIComponent(email)}%0A` +
+            let montoUsd = parseFloat(montoUsdInput.value) || 0;
+            let montoBsCalc = currentRate ? (montoUsd * currentRate).toFixed(2) : 'Pendiente';
+            const banco = bancosData[currentBanco];
+            const mensaje = `📺 *COMPROBANTE DE PAGO - PANAXSTREAMING TV GO*%0A%0A` +
+                `👤 *Nombre:* ${encodeURIComponent(nombre)}%0A` +
+                `📞 *Teléfono:* ${encodeURIComponent(telefono)}%0A` +
+                `📧 *Correo:* ${encodeURIComponent(email)}%0A` +
                 `🆔 *Cédula:* ${encodeURIComponent(cedulaPersonal)}%0A%0A` +
-                `💵 *Monto a pagar:* ${montoUsd.toFixed(2)} USD (${montoBsTexto.replace(/ por un monto de /, '')})%0A%0A` +
-                `🏦 *Datos del beneficiario:*%0A` +
-                `Banco: ${encodeURIComponent(bancoNombre)}%0A` +
-                `Teléfono: ${encodeURIComponent(telefonoBanco)}%0A` +
-                `Cédula/RIF: ${encodeURIComponent(cedulaBanco)}%0A%0A` +
+                `💵 *Monto a pagar:* ${montoUsd.toFixed(2)} USD → ${montoBsCalc} Bs (Tasa BCV ${currentRate ? currentRate.toFixed(2) : '??'})%0A%0A` +
+                `🏦 *Beneficiario:* ${encodeURIComponent(banco.nombre)}%0A` +
+                `📞 *Teléfono beneficiario:* ${banco.telefono}%0A` +
+                `🆔 *Cédula/RIF:* ${banco.cedula}%0A%0A` +
                 `✅ *Listo para procesar pago.*`;
-            
-            const waLink = `https://wa.me/${phoneNumber}?text=${message}`;
-            window.open(waLink, '_blank');
+            window.open(`https://wa.me/584120754787?text=${mensaje}`, '_blank');
         });
     }
 
+    // ==================== CONFIGURAR BOTONES Y EVENTOS ====================
     function setupBankCopyButtons() {
-        const copyTelefono = () => {
-            const telefono = telefonoValueSpan.innerText;
-            copyToClipboard(telefono, 'Teléfono copiado ✓', false);
-            const originalText = copyTelefonoBtn.innerText;
-            copyTelefonoBtn.innerText = '✓ Copiado';
-            setTimeout(() => { copyTelefonoBtn.innerText = originalText; }, 1200);
-        };
-        const copyCedula = () => {
-            const cedula = cedulaValueSpan.innerText;
-            copyToClipboard(cedula, 'Cédula copiada ✓', false);
-            const originalText = copyCedulaBtn.innerText;
-            copyCedulaBtn.innerText = '✓ Copiado';
-            setTimeout(() => { copyCedulaBtn.innerText = originalText; }, 1200);
-        };
-        copyTelefonoBtn.addEventListener('click', copyTelefono);
-        copyCedulaBtn.addEventListener('click', copyCedula);
+        copyTelefonoBtn.onclick = () => copyToClipboard(telefonoValueSpan.innerText, 'Teléfono copiado');
+        copyCedulaBtn.onclick = () => copyToClipboard(cedulaValueSpan.innerText, 'Cédula copiada');
     }
 
     function setupBancoSelector() {
-        bancoSelector.addEventListener('change', (e) => {
-            currentBanco = e.target.value;
-            updateBancoUI();
-        });
+        bancoSelector.addEventListener('change', (e) => { currentBanco = e.target.value; updateBancoUI(); });
     }
 
     function bindInputEvents() {
         montoUsdInput.addEventListener('input', updateConversion);
-        montoUsdInput.addEventListener('change', () => {
-            let val = parseFloat(montoUsdInput.value);
-            if (isNaN(val)) montoUsdInput.value = 0;
-            updateConversion();
-        });
+        montoUsdInput.addEventListener('change', () => { if (isNaN(parseFloat(montoUsdInput.value))) montoUsdInput.value = 0; updateConversion(); });
     }
 
     function setupPlanSelector() {
         planSelector.addEventListener('change', (e) => {
-            const selectedValue = parseFloat(e.target.value);
-            if (!isNaN(selectedValue)) {
-                montoUsdInput.value = selectedValue.toFixed(2);
-                updateConversion();
-            }
+            const val = parseFloat(e.target.value);
+            if (!isNaN(val)) { montoUsdInput.value = val.toFixed(2); updateConversion(); }
         });
     }
 
-    function startDailyUpdate() {
-        if (updateInterval) clearInterval(updateInterval);
-        updateInterval = setInterval(() => {
-            fetchBCVRate(true);
-            updateNextUpdateMessage();
-        }, 24 * 60 * 60 * 1000);
-        updateNextUpdateMessage();
-    }
-
+    // ==================== INICIALIZACIÓN ====================
     async function init() {
         bindInputEvents();
         setupBancoSelector();
@@ -876,22 +892,22 @@
         setupWhatsApp();
         setupPlanSelector();
         copyBsBtn.addEventListener('click', handleCopyBs);
+        applyManualRateBtn.addEventListener('click', applyManualRate);
         refreshBtn.addEventListener('click', async () => {
             refreshBtn.innerText = '⌛';
-            await fetchBCVRate(true);
+            await fetchBCVRateFromAPI(true);
             refreshBtn.innerText = '🔄';
-            if (currentRate) updateConversion();
+            updateConversion();
+            if (updateInterval) clearInterval(updateInterval);
+            scheduleDailyUpdate();
         });
         updateBancoUI();
-        await fetchBCVRate(true);
-        startDailyUpdate();
-        const defaultPlanValue = parseFloat(planSelector.value);
-        if (!isNaN(defaultPlanValue)) {
-            montoUsdInput.value = defaultPlanValue.toFixed(2);
-            updateConversion();
-        }
+        await fetchBCVRateFromAPI(true);
+        scheduleDailyUpdate();
+        const defaultPlan = parseFloat(planSelector.value);
+        if (!isNaN(defaultPlan)) montoUsdInput.value = defaultPlan.toFixed(2);
+        updateConversion();
     }
-
     init();
 </script>
 </body>
